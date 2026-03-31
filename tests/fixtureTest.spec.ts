@@ -1,8 +1,10 @@
 import { test } from '../fixtures/authFixture';
+import {expect}  from "@playwright/test";
 
 
-test('dashboard visible', async ({ loggedInPage }) => {
+test('Product Page', async ({ loggedInPage }) => {
 
-  await loggedInPage.goto('https://example.com/dashboard');
+  await loggedInPage.goto('https://www.saucedemo.com/inventory.html');
 
+  await expect(loggedInPage).toHaveTitle("Swag Labs");
 });
