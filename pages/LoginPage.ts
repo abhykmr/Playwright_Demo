@@ -1,21 +1,21 @@
-import  {page} from "@playwright/test";
+import  {Page} from "@playwright/test";
 
 export class LoginPage {
-    private page: page;
+    private page: Page;
 
-    constructor(page:page){
+    constructor(page:Page){
         this.page = page;
     }
 
     async goto(){
-        await page.goto("/login");
+        await this.page.goto("https://www.saucedemo.com/");
     }
 
-    async login(email: string, password:string){
-        await this.page.getByLabel('Email').fil(email);
+    async login(username: string, password:string){
+    await this.page.getByPlaceholder('Username').fill(username);
 
-    await this.page.getByLabel('Password').fill(password);
+    await this.page.getByPlaceholder('Password').fill(password);
 
-    await this.page.getByRole('button', { name: 'Login' }).click();
+    await this.page.getByText("Login").click();
     }
 }

@@ -1,14 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
+import { Dashboard } from '../pages/DashBoad';
 
-test('valid login', async ({ page }) => {
+test('login flow', async ({ page }) => {
 
   const loginPage = new LoginPage(page);
+  const dashboad = new Dashboard(page);
 
   await loginPage.goto();
 
-  await loginPage.login('user@test.com', 'password');
+  await loginPage.login('standard_user', 'secret_sauce');
 
-  await expect(page).toHaveURL(/dashboard/);
+  await dashboad.verifyDashboard();
 
 });
